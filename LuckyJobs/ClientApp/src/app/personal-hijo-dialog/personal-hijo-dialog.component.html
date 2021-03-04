@@ -1,0 +1,54 @@
+<mat-dialog-content>
+  <h1>Lista de hijos</h1>
+  <button mat-raised-button color="primary" (click)="openDialogAdd()">Agregar Hijo</button>
+  <mat-form-field class="browser-filter">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar empleado" #input>
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSourceHijo" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+    <!-- Position Column -->
+    <ng-container matColumnDef="idDerHab">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.idDerHab}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombreCompleto">
+      <th mat-header-cell *matHeaderCellDef> Nombre Completo </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreCompleto}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="fchNac">
+      <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
+      <td mat-cell *matCellDef="let element"> {{element.fchNac | date:'dd/MM/yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Acción </th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="openDialogUpdate(element)" mat-icon-button color="primary" aria-label="Edit button">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button (click)="openDialogDelete(element.idDerHab)" mat-icon-button color="primary" aria-label="Delete button">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">
+    Cerrar
+  </button>
+</mat-dialog-actions>

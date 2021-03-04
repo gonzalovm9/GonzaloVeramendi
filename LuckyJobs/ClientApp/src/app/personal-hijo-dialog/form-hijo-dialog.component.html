@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>{{formTitle}}</h2>
+<form novalidate (ngSubmit)="onSubmit()" [formGroup]="form">
+  <mat-dialog-content>
+    <mat-form-field appearance="fill" class="full-width-field">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="Nombre1">
+      <mat-error *ngIf="form.get('Nombre1').hasError('required') && form.get('Nombre1').touched">
+        Ingrese un nombre válido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width-field">
+      <mat-label>Segundo Nombre</mat-label>
+      <input matInput formControlName="Nombre2">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width-field">
+      <mat-label>Apellido Paterno</mat-label>
+      <input matInput formControlName="ApPaterno">
+      <mat-error *ngIf="form.get('ApPaterno').hasError('required') && form.get('ApPaterno').touched">
+        Ingrese un apellido válido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width-field">
+      <mat-label>Apellido Materno</mat-label>
+      <input matInput formControlName="ApMaterno">
+      <mat-error *ngIf="form.get('ApMaterno').hasError('required') && form.get('ApMaterno').touched">
+        Ingrese un apellido válido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width-field">
+      <mat-label>Fecha de Nacimiento</mat-label>
+      <input matInput [matDatepicker]="myDatepicker" formControlName="FchNac">
+      <mat-datepicker-toggle matSuffix [for]="myDatepicker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker></mat-datepicker>
+      <mat-error *ngIf="form.get('FchNac').hasError('required') && form.get('FchNac').touched">
+        Ingrese una fecha de nacimiento válida
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">
+      Cancelar
+    </button>
+    <button type="submit" class="mat-raised-button mat-primary" [disabled]="form.invalid">
+      Guardar
+    </button>
+  </mat-dialog-actions>
+</form>

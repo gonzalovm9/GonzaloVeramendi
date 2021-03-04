@@ -1,0 +1,10 @@
+table {
+  width: 100%;
+  margin: 20px auto;
+}
+
+.browser-filter {
+  margin-top: 10px;
+  float: right;
+  width: 100%;
+}
